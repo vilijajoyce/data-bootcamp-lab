@@ -1,6 +1,6 @@
-# VA Lab Data - 2022 VA Data Bootcamp
+# VA Lab Data - 2023 VA Data Bootcamp
 ### Last updated
-9/28/2002
+10/19/2023
 
 This repo contains 
 * code to pull vitamin D lab data from Chem.PatientLabChem
