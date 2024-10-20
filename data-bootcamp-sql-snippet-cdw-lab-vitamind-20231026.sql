@@ -1,5 +1,5 @@
-/*Vitamin D patientlabchem code for va data bootcamp lab presentation 20231026*/
-/*Last updated 20231019 by Vilija Joyce - vilija.joyce@va.gov*/
+/*Vitamin D patientlabchem code for VA Data Bootcamp lab presentation 20241020*/
+/*Last updated 20241020 by Vilija Joyce - vilija.joyce@va.gov*/
 
 -- Clear temp tables (if they exist)
 drop table if exists #labnamesids
@@ -22,7 +22,7 @@ select top 100 * from #labnamesids
 -- Clear temp tables (if they exist)
 drop table if exists #labs1
 
--- Use list of lab names and sids to pull September 2023 vitamin D tests from chem.patientlabchem 
+-- Use list of lab names and sids to pull September 2024 vitamin D tests from chem.patientlabchem 
 select	
 	 pl.patientsid
 	,pl.sta3n 
@@ -46,10 +46,10 @@ left join
 	cdwwork.chem.labpanel lp on pl.labpanelsid=lp.labpanelsid
 	where
 		(
-		pl.labchemcompletedatetime >= convert (datetime2(0), '9/1/2023') and
-		pl.labchemcompletedatetime <= convert (datetime2(0), '9/30/2023')
+		pl.labchemcompletedatetime >= convert (datetime2(0), '9/1/2024') and
+		pl.labchemcompletedatetime <= convert (datetime2(0), '9/30/2024')
 		)
--- n=213893
+-- n=212296
 		
 -- Review
 select top 100 * from #labs1 order by patientsid, labchemcompletedatetime
@@ -60,9 +60,9 @@ select distinct loincsid, loinc, sta3n into #loincs from #labs1 where loinc not 
 
 -- Review
 select top 100 * from #loincs
--- n=126
+-- n=122
 
--- Use list of loincs to pull September 2023 vitamin D tests from chem.patientlabchem 
+-- Use list of loincs to pull September 2024 vitamin D tests from chem.patientlabchem 
 drop table if exists #labs2
 select	
 	 pl.patientsid
@@ -87,10 +87,10 @@ inner join
 	cdwwork.chem.labpanel lp on pl.labpanelsid=lp.labpanelsid
 	where
 		(
-		pl.labchemcompletedatetime >= convert (datetime2(0), '9/1/2023') and
-		pl.labchemcompletedatetime <= convert (datetime2(0), '9/30/2023') 
+		pl.labchemcompletedatetime >= convert (datetime2(0), '9/1/2024') and
+		pl.labchemcompletedatetime <= convert (datetime2(0), '9/30/2024') 
 		)			
--- n=214213
+-- n=213719
 
 -- Review
 select top 100 * from #labs2 order by patientsid, labchemcompletedatetime
@@ -102,7 +102,7 @@ from #labs1
 union 
 select patientsid, sta3n, labchemcompletedatetime, labchemtestsid, loinc, labchemtestname, labchemresultvalue, units, labpanelcomment 
 from #labs2 
--- n= 217797
+-- n= 216238
 
 -- Review
 select top 100 * from #labsfinal order by patientsid, labchemcompletedatetime
