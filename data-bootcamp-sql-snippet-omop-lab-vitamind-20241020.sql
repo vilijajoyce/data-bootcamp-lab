@@ -5,7 +5,8 @@
 drop table if exists #vitd_concepts
 
 -- Pull Vitamin D-related concepts from OMOP LabChemTest_Concept and Concept tables
-selectl.loinc_mapped 
+select 
+l.loinc_mapped 
 ,l.LabChemTestName
 ,l.concept_id
 ,c.concept_name,
@@ -13,8 +14,8 @@ sum(l.instancecount) as freq
 into #vitd_concepts
 from cdwwork.omopv5dim.labchemtest_concept l
 left outer join cdwwork.omopv5.concept c
-onl.concept_id=c.concept_id
-wherelabchemtestname like '%vitamin%d%'
+on l.concept_id=c.concept_id
+where labchemtestname like '%vitamin%d%'
 group by l.loinc_mapped, l.LabChemTestName, l.concept_id, c.concept_name
 order by freq desc
 -- n=893
