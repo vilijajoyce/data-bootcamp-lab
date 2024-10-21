@@ -1,7 +1,7 @@
-# VA Lab Data - 2023 VA Data Bootcamp
+# VA Lab Data - 2024 VA Data Bootcamp
 ### Last updated
-10/26/2023
+10/20/2024
 
 This repo contains 
 * code to pull vitamin D lab data from Chem.PatientLabChem
-* code to pull COVID-19 antibody tests from OMOPv5.Measurement
+* code to pull vitamin D lab data from OMOPv5.Measurement
